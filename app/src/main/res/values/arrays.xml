@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tipoImovel">
+        <item>Casa</item>
+        <item>Apartamento</item>
+        <item>Loja</item>
+        <item>Não Sei</item>
+    </array>
+    <array name="tamanhoImovel">
+        <item>Pequeno</item>
+        <item>Médio</item>
+        <item>Grande</item>
+        <item>Não Sei</item>
+    </array>
+</resources>
