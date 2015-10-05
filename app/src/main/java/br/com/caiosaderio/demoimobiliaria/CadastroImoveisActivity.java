@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,14 +26,19 @@ public class CadastroImoveisActivity extends AppCompatActivity {
     private Button btnLocalizacao;
     private Button btnFoto;
     private Button btnSalvarImovel;
+    private Button btnExcluirImovel;
     private Float latitude;
     private Float longitude;
     private String foto;
+    private Imovel imovel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_imoveis);
+
+        //SERIALIZABLE DATA
+        imovel = (Imovel) getIntent().getSerializableExtra("imovelSelecionado");
 
         etNomeContato = (EditText) findViewById(R.id.etNomeContato);
         etTelContato = (EditText) findViewById(R.id.etTelContato);
@@ -43,7 +49,18 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         btnLocalizacao = (Button) findViewById(R.id.btnLocalizacao);
         btnFoto = (Button) findViewById(R.id.btnFoto);
         btnSalvarImovel = (Button) findViewById(R.id.btnSalvarImovel);
+        btnExcluirImovel = (Button) findViewById(R.id.btnExcluirImovel);
 
+        if(imovel != null && imovel.getId() != null){
+            etNomeContato.setText(imovel.getNome());
+            etTelContato.setText(imovel.getTelefone());
+            spTamanho.setSelection(imovel.getTamanho());
+            spTipoImovel.setSelection(imovel.getTipo());
+            cbEmConstrucao.setChecked((imovel.getEmConstrucao() > 0) ? true : false);
+            etObs.setText(imovel.getObs());
+            btnLocalizacao.setText(getResources().getString(R.string.labelAlterar));
+            btnExcluirImovel.setVisibility(View.VISIBLE);
+        }
 
 
     }
@@ -55,7 +72,9 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         String obs = etObs.getText().toString();
 
         Boolean gravar = true;
-        Imovel imovel = new Imovel();
+        if(imovel == null  && imovel.getId() == null){
+            imovel = new Imovel();
+        }
         if(contato.length() > 0){
             imovel.setNome(contato);
         }else{
@@ -71,6 +90,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         imovel.setTamanho(spTamanho.getSelectedItemPosition());
         imovel.setTipo(spTipoImovel.getSelectedItemPosition());
         imovel.setEmConstrucao((emConstrucao) ? 1 : 0);
+        imovel.setAtivo(1);
         if(obs.length() > 0){
             imovel.setObs(obs);
         }else{
@@ -80,10 +100,19 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         imovel.setLatitude(latitude);
         imovel.setLongitude(longitude);
         imovel.setFoto(foto);
+        if(gravar){
+            ImovelDAO dao = new ImovelDAO(getApplicationContext());
+            dao.salvar(imovel);
+            finish();
+        }
 
+    }
+
+    public void deleteData(View v){
+        imovel.setAtivo(0);
         ImovelDAO dao = new ImovelDAO(getApplicationContext());
-        dao.salvar(imovel);
-
+        dao.excluir(imovel);
+        finish();
     }
 
 }

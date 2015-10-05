@@ -46,7 +46,7 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/tipoImovel"
+            android:entries="@array/tamanhoImovel"
             android:id="@+id/spTamanho"></Spinner>
 
 
@@ -103,13 +103,32 @@
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSalvarImovel"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/btnSalvar"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnSalvarImovel"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:onClick="saveData"
+                android:text="@string/btnSalvar"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnExcluirImovel"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:onClick="deleteData"
+                android:visibility="gone"
+                android:text="@string/btnExcluir"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

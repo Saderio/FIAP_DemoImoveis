@@ -43,6 +43,7 @@
             android:id="@+id/tvConstrucao"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             />
+        <!--
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,15 +51,19 @@
             android:id="@+id/tvObs"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             />
+        -->
 
     </LinearLayout>
-
+<!--
     <ImageButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:src="@android:drawable/btn_star_big_off"
         android:backgroundTintMode="multiply"
         android:layout_gravity="center_vertical"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:layout_weight="1"/>
+    -->
 
 </LinearLayout>

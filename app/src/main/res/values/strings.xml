@@ -23,4 +23,6 @@
     <string name="labelTamanho">Tamanho</string>
     <string name="btnSalvar">Gravar</string>
     <string name="labelNoImoveis">Não há imóveis cadastrados</string>
+    <string name="labelAlterar">ALterar</string>
+    <string name="btnExcluir">Excluir</string>
 </resources>

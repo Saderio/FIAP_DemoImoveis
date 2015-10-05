@@ -3,6 +3,7 @@ package br.com.caiosaderio.demoimobiliaria.adapter;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -46,28 +47,29 @@ public class ListaImoveisAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View view = activity.getLayoutInflater().inflate(R.layout.row_layout,null);
+        View linha = activity.getLayoutInflater().inflate(R.layout.row_layout, null);
         Imovel imovel = imoveis.get(position);
 
-        ImageView ivImovel = (ImageView) view.findViewById(R.id.ivListImovel);
-        TextView tvContato = (TextView) view.findViewById(R.id.tvContato);
-        TextView tvTamanho = (TextView) view.findViewById(R.id.tvTamanho);
-        TextView tvTipo = (TextView) view.findViewById(R.id.tvTipo);
-        TextView tvConstrucao = (TextView) view.findViewById(R.id.tvConstrucao);
-        TextView tvObservacao = (TextView) view.findViewById(R.id.tvObs);
+        ImageView ivImovel = (ImageView) linha.findViewById(R.id.ivListImovel);
+        TextView tvContato = (TextView) linha.findViewById(R.id.tvContato);
+        TextView tvTamanho = (TextView) linha.findViewById(R.id.tvTamanho);
+        TextView tvTipo = (TextView) linha.findViewById(R.id.tvTipo);
+        TextView tvConstrucao = (TextView) linha.findViewById(R.id.tvConstrucao);
+        //TextView tvObservacao = (TextView) linha.findViewById(R.id.tvObs);
 
-        if(imovel.getFoto().length() > 0){
+        if(imovel.getFoto() != null && imovel.getFoto().length() > 0){
             Bitmap bitmap;
             bitmap = BitmapFactory.decodeFile(imovel.getFoto());
-            ivImovel.setImageBitmap(bitmap);
-        }else{
-            ivImovel.setImageResource(R.mipmap.ic_launcher);
+            Bitmap imagemReduzida = Bitmap.createScaledBitmap(bitmap,100,100,true);
+            ivImovel.setImageBitmap(imagemReduzida);
         }
+
         tvContato.setText(imovel.getNome());
-        tvTamanho.setText(view.getResources().getStringArray(R.array.tamanhoImovel)[imovel.getTamanho()].toString());
-        tvTipo.setText(view.getResources().getStringArray(R.array.tipoImovel)[imovel.getTipo()].toString());
-        tvConstrucao.setText((view.getResources().getStringArray(R.array.simNao)[imovel.getEmConstrucao()+1]).toString());
-        tvObservacao.setText(imovel.getObs());
-        return convertView;
+        tvTamanho.setText(linha.getResources().getStringArray(R.array.tamanhoImovel)[imovel.getTamanho()].toString());
+        tvTipo.setText(linha.getResources().getStringArray(R.array.tipoImovel)[imovel.getTipo()].toString());
+        tvConstrucao.setText((linha.getResources().getStringArray(R.array.simNao)[imovel.getEmConstrucao()]).toString());
+        //tvObservacao.setText(imovel.getObs());
+
+        return linha;
     }
 }

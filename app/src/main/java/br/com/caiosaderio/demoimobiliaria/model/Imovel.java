@@ -1,9 +1,11 @@
 package br.com.caiosaderio.demoimobiliaria.model;
 
+import java.io.Serializable;
+
 /**
  * Created by caiosaderio on 10/3/15.
  */
-public class Imovel {
+public class Imovel implements Serializable{
 
     private Long id;
     private String nome;

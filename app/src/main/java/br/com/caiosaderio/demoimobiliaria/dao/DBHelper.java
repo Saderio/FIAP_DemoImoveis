@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "fiap_demo_imobiliarias.db";
-    private static final Integer VERSAO_BRANCO = 1;
+    private static final Integer VERSAO_BRANCO = 3;
 
     //DATABASE SQL STRUCTURE
     private static  final String imoveisTableString = "CREATE TABLE IF NOT EXISTS imoveis(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
@@ -23,13 +23,13 @@ public class DBHelper extends SQLiteOpenHelper {
             +"latitude NUMERIC,"
             +"longitude NUMERIC,"
             +"foto_path TEXT,"
-            +"ativo INTEGER NOT NULL DEFAULT 1,"
+            +"ativo INTEGER DEFAULT 1,"
             +"user_cadastrou INTEGER,"
-            +"favorito INTEGER NOT NULL DEFAULT 0);";
+            +"favorito INTEGER DEFAULT 0);";
 
     private static final String dropTableImoveisString = "DROP TABLE IF EXISTS imoveis;";
 
-    private static final String usuarioTableString = "CREATE IF NOT EXISTS user(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
+    private static final String usuarioTableString = "CREATE TABLE IF NOT EXISTS user(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
             +"login TEXT NOT NULL,"
             +"password TEXT NOT NULL"
             +");";

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class ImovelDAO {
         if (imovel.getId() == null) {
             inserir(imovel);
         } else {
+            Log.d("Atualizar", "atualizar");
             atualizar(imovel);
         }
     }
@@ -73,12 +75,33 @@ public class ImovelDAO {
         db.close();
     }
 
+    public void excluir(Imovel imovel) {
+        ContentValues valores = new ContentValues();
+        valores.put("nome_contato", imovel.getNome());
+        valores.put("telefone", imovel.getTelefone());
+        valores.put("tamanho", imovel.getTamanho());
+        valores.put("tipo", imovel.getTipo());
+        valores.put("em_construcao", imovel.getEmConstrucao());
+        valores.put("observacao", imovel.getObs());
+        valores.put("latitude", imovel.getLatitude());
+        valores.put("longitude", imovel.getLongitude());
+        valores.put("foto_path", imovel.getFoto());
+        valores.put("ativo", imovel.getAtivo());
+        valores.put("user_cadastrou", imovel.getUserCadastrou());
+        valores.put("favorito", imovel.getFavorito());
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        db.update("imoveis", valores, "_id=?", new String[]{imovel.getId().toString()});
+        db.close();
+    }
+
     public List<Imovel> listaAll() {
         List<Imovel> imoveis = new ArrayList<>();
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        Cursor cursor = db.query("imoveis", null, null, null, null, null, "_id ASC");
+        Cursor cursor = db.query("imoveis", null, "ativo = 1", null, null, null, "_id ASC");
 
         try {
             while (cursor.moveToNext()) {
