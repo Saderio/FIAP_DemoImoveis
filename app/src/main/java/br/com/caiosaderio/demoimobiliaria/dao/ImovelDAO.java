@@ -8,19 +8,21 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.caiosaderio.demoimobiliaria.model.Imovel;
+
 /**
  * Created by caiosaderio on 10/3/15.
  */
-public class Imovel {
+public class ImovelDAO {
     private DBHelper dbHelper;
     private Context ctx;
 
-    public Imovel(Context ctx) {
+    public ImovelDAO(Context ctx) {
         dbHelper = new DBHelper(ctx);
         this.ctx = ctx;
     }
 
-    public void salvar(br.com.caiosaderio.demoimobiliaria.model.Imovel imovel) {
+    public void salvar(Imovel imovel) {
         if (imovel.getId() == null) {
             inserir(imovel);
         } else {
@@ -28,7 +30,7 @@ public class Imovel {
         }
     }
 
-    private void inserir(br.com.caiosaderio.demoimobiliaria.model.Imovel imovel) {
+    private void inserir(Imovel imovel) {
         ContentValues valores = new ContentValues();
         valores.put("nome_contato", imovel.getNome());
         valores.put("telefone", imovel.getTelefone());
@@ -50,7 +52,7 @@ public class Imovel {
         db.close();
     }
 
-    private void atualizar(br.com.caiosaderio.demoimobiliaria.model.Imovel imovel) {
+    private void atualizar(Imovel imovel) {
         ContentValues valores = new ContentValues();
         valores.put("nome_contato", imovel.getNome());
         valores.put("telefone", imovel.getTelefone());
@@ -71,16 +73,16 @@ public class Imovel {
         db.close();
     }
 
-    public List<br.com.caiosaderio.demoimobiliaria.model.Imovel> listaAll() {
-        List<br.com.caiosaderio.demoimobiliaria.model.Imovel> imoveis = new ArrayList<>();
+    public List<Imovel> listaAll() {
+        List<Imovel> imoveis = new ArrayList<>();
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        Cursor cursor = db.query("imoveis", null, null, null, null, null, "nome ASC");
+        Cursor cursor = db.query("imoveis", null, null, null, null, null, "_id ASC");
 
         try {
             while (cursor.moveToNext()) {
-                br.com.caiosaderio.demoimobiliaria.model.Imovel imovel = new br.com.caiosaderio.demoimobiliaria.model.Imovel();
+                Imovel imovel = new Imovel();
                 imovel.setId(cursor.getLong(cursor.getColumnIndex("_id")));
                 imovel.setNome(cursor.getString(cursor.getColumnIndex("nome_contato")));
                 imovel.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));

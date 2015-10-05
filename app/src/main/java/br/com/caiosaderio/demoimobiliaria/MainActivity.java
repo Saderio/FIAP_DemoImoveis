@@ -1,16 +1,66 @@
 package br.com.caiosaderio.demoimobiliaria;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
+
+import br.com.caiosaderio.demoimobiliaria.dao.ImovelDAO;
+import br.com.caiosaderio.demoimobiliaria.model.Imovel;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FloatingActionButton fab;
+    private TextView tvNoImovel;
+    private ListView listaImoveis;
+    private ImovelDAO dao;
+    private List<Imovel> imoveis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.coordinator_main);
+
+        dao = new ImovelDAO(this);
+        imoveis = dao.listaAll();
+
+        tvNoImovel = (TextView) findViewById(R.id.tvNoImovel);
+        listaImoveis = (ListView) findViewById(R.id.listaImovies);
+        fab = (FloatingActionButton) findViewById(R.id.fabAddImovel);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             Intent i = new Intent(getApplicationContext(),CadastroImoveisActivity.class);
+                startActivity(i);
+            }
+        });
+//        if(imoveis.size() > 0){
+          //  carregaImoveis();
+  //      }else{
+            tvNoImovel.setVisibility(View.VISIBLE);
+            listaImoveis.setVisibility(View.GONE);
+    //    }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //carregaImoveis();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+       // carregaImoveis();
     }
 
     @Override
@@ -34,4 +84,10 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+/*
+    public void carregaImoveis(){
+        ArrayAdapter<Imovel> adapater = new ArrayAdapter<Imovel>(this, android.R.layout.simple_list_item_1, imoveis);
+        listaImoveis.setAdapter(adapater);
+    }
+    */
 }

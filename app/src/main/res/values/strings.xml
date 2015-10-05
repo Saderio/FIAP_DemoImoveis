@@ -22,4 +22,5 @@
     <string name="btnLocalizacao">Obter Localização</string>
     <string name="labelTamanho">Tamanho</string>
     <string name="btnSalvar">Gravar</string>
+    <string name="labelNoImoveis">Não há imóveis cadastrados</string>
 </resources>

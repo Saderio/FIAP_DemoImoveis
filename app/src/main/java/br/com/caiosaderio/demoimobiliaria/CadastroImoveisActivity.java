@@ -11,6 +11,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import br.com.caiosaderio.demoimobiliaria.dao.ImovelDAO;
+import br.com.caiosaderio.demoimobiliaria.model.Imovel;
+
 public class CadastroImoveisActivity extends AppCompatActivity {
 
     private EditText etNomeContato;
@@ -22,6 +25,9 @@ public class CadastroImoveisActivity extends AppCompatActivity {
     private Button btnLocalizacao;
     private Button btnFoto;
     private Button btnSalvarImovel;
+    private Float latitude;
+    private Float longitude;
+    private String foto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,46 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         btnLocalizacao = (Button) findViewById(R.id.btnLocalizacao);
         btnFoto = (Button) findViewById(R.id.btnFoto);
         btnSalvarImovel = (Button) findViewById(R.id.btnSalvarImovel);
+
+
+
+    }
+
+    public void saveData(View v){
+        String contato = etNomeContato.getText().toString();
+        String telefone = etTelContato.getText().toString();
+        Boolean emConstrucao = cbEmConstrucao.isChecked();
+        String obs = etObs.getText().toString();
+
+        Boolean gravar = true;
+        Imovel imovel = new Imovel();
+        if(contato.length() > 0){
+            imovel.setNome(contato);
+        }else{
+            etNomeContato.requestFocus();
+            gravar = false;
+        }
+        if(telefone.length() > 0){
+            imovel.setTelefone(telefone);
+        }else{
+            etTelContato.requestFocus();
+            gravar = false;
+        }
+        imovel.setTamanho(spTamanho.getSelectedItemPosition());
+        imovel.setTipo(spTipoImovel.getSelectedItemPosition());
+        imovel.setEmConstrucao((emConstrucao) ? 1 : 0);
+        if(obs.length() > 0){
+            imovel.setObs(obs);
+        }else{
+            etObs.requestFocus();
+            gravar = false;
+        }
+        imovel.setLatitude(latitude);
+        imovel.setLongitude(longitude);
+        imovel.setFoto(foto);
+
+        ImovelDAO dao = new ImovelDAO(getApplicationContext());
+        dao.salvar(imovel);
 
     }
 

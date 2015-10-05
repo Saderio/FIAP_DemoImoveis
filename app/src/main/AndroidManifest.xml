@@ -13,16 +13,22 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/NoTitleBar" >
+            <!--
+            VOLTAR!!!!!!
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".dataActivity"
@@ -31,8 +37,7 @@
         </activity>
         <activity
             android:name=".CadastroImoveisActivity"
-            android:label="@string/title_activity_cadastro_imoveis"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:label="@string/title_activity_cadastro_imoveis">
         </activity>
     </application>
 

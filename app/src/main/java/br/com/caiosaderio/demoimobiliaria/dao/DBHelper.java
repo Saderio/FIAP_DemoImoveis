@@ -29,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String dropTableImoveisString = "DROP TABLE IF EXISTS imoveis;";
 
-    private static final String usuarioTableString = "CREATE IF NOT EXISTS user(_id INTEGER NOT NULL PRIMARY KEY AUTO INCREMENT,"
+    private static final String usuarioTableString = "CREATE IF NOT EXISTS user(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
             +"login TEXT NOT NULL,"
             +"password TEXT NOT NULL"
             +");";

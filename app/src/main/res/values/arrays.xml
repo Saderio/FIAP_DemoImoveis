@@ -12,4 +12,8 @@
         <item>Grande</item>
         <item>Não Sei</item>
     </array>
+    <array name="simNao">
+        <item>Não</item>
+        <item>Sim</item>
+    </array>
 </resources>
