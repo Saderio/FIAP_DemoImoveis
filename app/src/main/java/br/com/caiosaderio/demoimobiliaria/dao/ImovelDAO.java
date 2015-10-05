@@ -27,7 +27,6 @@ public class ImovelDAO {
         if (imovel.getId() == null) {
             inserir(imovel);
         } else {
-            Log.d("Atualizar", "atualizar");
             atualizar(imovel);
         }
     }
@@ -55,27 +54,6 @@ public class ImovelDAO {
     }
 
     private void atualizar(Imovel imovel) {
-        ContentValues valores = new ContentValues();
-        valores.put("nome_contato", imovel.getNome());
-        valores.put("telefone", imovel.getTelefone());
-        valores.put("tamanho", imovel.getTamanho());
-        valores.put("tipo", imovel.getTipo());
-        valores.put("em_construcao", imovel.getEmConstrucao());
-        valores.put("observacao", imovel.getObs());
-        valores.put("latitude", imovel.getLatitude());
-        valores.put("longitude", imovel.getLongitude());
-        valores.put("foto_path", imovel.getFoto());
-        valores.put("ativo", imovel.getAtivo());
-        valores.put("user_cadastrou", imovel.getUserCadastrou());
-        valores.put("favorito", imovel.getFavorito());
-
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        db.update("imoveis", valores, "_id=?", new String[]{imovel.getId().toString()});
-        db.close();
-    }
-
-    public void excluir(Imovel imovel) {
         ContentValues valores = new ContentValues();
         valores.put("nome_contato", imovel.getNome());
         valores.put("telefone", imovel.getTelefone());

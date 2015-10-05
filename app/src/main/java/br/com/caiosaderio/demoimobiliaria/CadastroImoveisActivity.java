@@ -72,7 +72,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         String obs = etObs.getText().toString();
 
         Boolean gravar = true;
-        if(imovel == null  && imovel.getId() == null){
+        if(imovel == null){
             imovel = new Imovel();
         }
         if(contato.length() > 0){
@@ -91,12 +91,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         imovel.setTipo(spTipoImovel.getSelectedItemPosition());
         imovel.setEmConstrucao((emConstrucao) ? 1 : 0);
         imovel.setAtivo(1);
-        if(obs.length() > 0){
-            imovel.setObs(obs);
-        }else{
-            etObs.requestFocus();
-            gravar = false;
-        }
+        imovel.setObs(obs);
         imovel.setLatitude(latitude);
         imovel.setLongitude(longitude);
         imovel.setFoto(foto);
@@ -111,7 +106,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
     public void deleteData(View v){
         imovel.setAtivo(0);
         ImovelDAO dao = new ImovelDAO(getApplicationContext());
-        dao.excluir(imovel);
+        dao.salvar(imovel);
         finish();
     }
 

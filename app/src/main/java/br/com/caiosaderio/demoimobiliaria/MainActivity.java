@@ -48,12 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        if(imoveis.size() > 0){
-            carregaImoveis();
-        }else{
-            tvNoImovel.setVisibility(View.VISIBLE);
-            listaImoveis.setVisibility(View.GONE);
-        }
 
         listaImoveis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,14 +64,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         carregaImoveis();
-        Log.d("ciclo", "resumoe");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         carregaImoveis();
-        Log.d("ciclo", "restart");
     }
 
 
@@ -106,9 +98,13 @@ public class MainActivity extends AppCompatActivity {
     public void carregaImoveis(){
         dao = new ImovelDAO(this);
         imoveis = dao.listaAll();
-        ListaImoveisAdapter adapter = new ListaImoveisAdapter(imoveis,this);
-        //ArrayAdapter<Imovel> adapter = new ArrayAdapter<Imovel>(this, android.R.layout.simple_list_item_1, imoveis);
-        listaImoveis.setAdapter(adapter);
+        if(imoveis.size() > 0){
+            ListaImoveisAdapter adapter = new ListaImoveisAdapter(imoveis,this);
+            listaImoveis.setAdapter(adapter);
+        }else{
+            tvNoImovel.setVisibility(View.VISIBLE);
+            listaImoveis.setVisibility(View.GONE);
+        }
     }
 
 }
