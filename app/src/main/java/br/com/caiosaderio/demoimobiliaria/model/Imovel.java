@@ -1,5 +1,7 @@
 package br.com.caiosaderio.demoimobiliaria.model;
 
+import android.widget.ImageView;
+
 import java.io.Serializable;
 
 /**
@@ -20,6 +22,7 @@ public class Imovel implements Serializable{
     private Integer ativo;
     private Integer userCadastrou;
     private Integer favorito;
+    private ImageView fotoImovel;
 
     public Long getId() {
         return id;
@@ -123,5 +126,13 @@ public class Imovel implements Serializable{
 
     public void setFavorito(Integer favorito) {
         this.favorito = favorito;
+    }
+
+    public ImageView getFotoImovel() {
+        return fotoImovel;
+    }
+
+    public void setFotoImovel(ImageView fotoImovel) {
+        this.fotoImovel = fotoImovel;
     }
 }
