@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">DemoImobiliaria</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_data">dataActivity</string>
+    <string name="userLabel">Usuário</string>
+    <string name="senhaLabel">Senha</string>
+    <string name="labelManterConectado">Manter Conectado</string>
+    <string name="textLoginInvalido">Login inválido</string>
+    <string name="labelLogin">Login</string>
+    <string name="title_activity_cadastro_imoveis">CadastroImoveisActivity</string>
+    <string name="labelEtNomeContato">Nome do Contato ou Imobiliária</string>
+    <string name="hintContato">Contato</string>
+    <string name="labelTelefoneContato">Telefone</string>
+    <string name="hintTelefoneContato">Telefone</string>
+    <string name="labelTipoImovel">Tipo:</string>
+    <string name="labelEmConstrucao">Em Construção</string>
+    <string name="labelObservacao">Observação</string>
+    <string name="btnFoto">Tirar Foto</string>
+    <string name="btnLocalizacao">Obter Localização</string>
+    <string name="labelTamanho">Tamanho</string>
+    <string name="btnSalvar">Gravar</string>
+    <string name="labelNoImoveis">Não há imóveis cadastrados</string>
+    <string name="labelAlterar">ALterar</string>
+    <string name="btnExcluir">Excluir</string>
+</resources>
